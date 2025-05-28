@@ -102,25 +102,25 @@ body {
   }
   
   #title {
-    position: relative; /* Changed from absolute to relative */
-    top: 0; /* Reset top positioning */
+    position: relative; 
+    top: 0; 
     height: 140px; /* Smaller but adequate title area for small screens */
     padding: 12px 8px;
-    margin: 15px 0; /* Add margin above and below */
+    margin: 15px 0; 
   }
   
   #logo {
     height: 60px;
     padding: 8px 12px;
-    margin: 12px auto; /* Maintained margin to ensure clear separation from map */
+    margin: 12px auto; 
     z-index: 9999; /* Very high z-index to ensure it's above the map */
-    position: relative; /* Ensure z-index takes effect */
+    position: relative; 
     background: white;
   }
   
   #header {
     padding: 8px 12px;
-    margin: 8px 0; /* Add margin around header */
+    margin: 8px 0;
   }
   
   #title h1 {
@@ -187,8 +187,7 @@ body {
 }
 
 .chapter-container {
-  /* margin + padding = chapterContainerMargin in script.js */
-  /* Important for scrolling! */
+ 
   margin: 50px 0 0 0;
   padding: 20px 0 0 0;
   text-align: center;
@@ -285,10 +284,7 @@ a.source:visited {
   opacity: 0.75;
 }
 
-/*
-  By default, current (active) marker is orange.
-  If you want to change the color, see options here: https://github.com/coryasilva/Leaflet.ExtraMarkers/blob/master/src/assets/css/leaflet.extra-markers.css
-*/
+
 .marker-active {
   background-position: -72px 0 !important;
 }
