@@ -17,7 +17,7 @@ body {
 /* Mobile-specific styles for better map visibility */
 @media screen and (max-width: 767px) {
   #map {
-    height: 360px; /* Increased height from 320px to 360px */
+    height: 400px; /* Increased height from 360px to 400px */
     width: 100vw;
     position: relative; /* Changed from absolute to relative */
     border-bottom: 3px solid orange;
@@ -28,8 +28,8 @@ body {
   }
   
   #narration {
-    top: calc(360px + 260px); /* Adjusted for larger map + margin + title space */
-    height: calc(100vh - 620px - 3px);
+    top: calc(400px + 260px); /* Adjusted for larger map + margin + title space */
+    height: calc(100vh - 660px - 3px);
   }
   
   #title {
@@ -85,7 +85,7 @@ body {
 /* For very small mobile screens */
 @media screen and (max-width: 480px) {
   #map {
-    height: 310px; /* Increased height from 280px to 310px for small screens */
+    height: 340px; /* Increased height from 310px to 340px for small screens */
     width: 100vw;
     position: relative; /* Changed from absolute to relative */
     border-bottom: 3px solid orange;
@@ -96,8 +96,8 @@ body {
   }
   
   #narration {
-    top: calc(310px + 220px); /* Adjusted for larger map + margin + title space */
-    height: calc(100vh - 530px - 3px);
+    top: calc(340px + 220px); /* Adjusted for larger map + margin + title space */
+    height: calc(100vh - 560px - 3px);
   }
   
   #title {
