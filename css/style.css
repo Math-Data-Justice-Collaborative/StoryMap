@@ -17,25 +17,29 @@ body {
 /* Mobile-specific styles for better map visibility */
 @media screen and (max-width: 767px) {
   #map {
-    height: 40vh; /* Increase map height to 40% of viewport height on mobile */
-    min-height: 300px; /* Ensure minimum height for very small screens */
-    max-height: 400px; /* Prevent map from being too large on larger mobile screens */
+    height: 360px; /* Increased height from 320px to 360px */
+    width: 100vw;
+    position: relative; /* Changed from absolute to relative */
+    border-bottom: 3px solid orange;
+    top: 0;
+    left: 0;
+    margin-bottom: 50px; /* Maintained margin to ensure no overlap with logo */
+    z-index: 1; /* Lower z-index than title elements */
   }
   
   #narration {
-    top: calc(40vh + 160px); /* Position below map + title space */
-    min-top: 460px;
-    height: calc(60vh - 160px - 3px);
+    top: calc(360px + 260px); /* Adjusted for larger map + margin + title space */
+    height: calc(100vh - 620px - 3px);
   }
   
   #title {
-    top: 40vh; /* Position right below the map */
-    min-top: 300px; /* Align with minimum map height */
+    position: relative; /* Changed from absolute to relative */
+    top: 0; /* Reset top positioning */
     visibility: visible !important; /* Make sure it's visible on mobile */
-    opacity: 1 !important; /* Ensure full opacity initially */
+    opacity: 1; /* Remove !important so JavaScript can control opacity when scrolling */
     height: 160px; /* Increased height for title area */
     padding: 15px 10px; /* More padding for better spacing */
-    margin: 0;
+    margin: 20px 0; /* Add margin above and below */
     background-color: white;
     border-bottom: 2px solid #eee; /* Add subtle separator */
     z-index: 1001; /* Ensure it's above the map */
@@ -46,15 +50,16 @@ body {
   #logo {
     height: 80px; /* Adequate height for mobile */
     padding: 10px 15px; /* Better padding around logo */
-    margin: 0 auto 5px auto; /* Center and add bottom margin */
+    margin: 15px auto; /* Maintained margin to ensure clear separation from map */
     background: white;
-    z-index: 1002;
+    z-index: 9999; /* Very high z-index to ensure it's above the map */
+    position: relative; /* Ensure z-index takes effect */
   }
   
   /* Mobile-specific header styling */
   #header {
     padding: 10px 15px; /* Increased padding for better spacing */
-    margin: 5px 0; /* Add margin around header */
+    margin: 10px 0; /* Add margin around header */
     background: white;
     z-index: 1002;
   }
@@ -81,32 +86,41 @@ body {
 /* For very small mobile screens */
 @media screen and (max-width: 480px) {
   #map {
-    height: 35vh;
-    min-height: 280px;
+    height: 310px; /* Increased height from 280px to 310px for small screens */
+    width: 100vw;
+    position: relative; /* Changed from absolute to relative */
+    border-bottom: 3px solid orange;
+    top: 0;
+    left: 0;
+    margin-bottom: 40px; /* Maintained margin to ensure no overlap with logo */
+    z-index: 1; /* Lower z-index than title elements */
   }
   
   #narration {
-    top: calc(35vh + 140px);
-    min-top: 420px;
-    height: calc(65vh - 140px - 3px);
+    top: calc(310px + 220px); /* Adjusted for larger map + margin + title space */
+    height: calc(100vh - 530px - 3px);
   }
   
   #title {
-    top: 35vh; /* Position right below the smaller map */
-    min-top: 280px;
+    position: relative; /* Changed from absolute to relative */
+    top: 0; /* Reset top positioning */
     height: 140px; /* Smaller but adequate title area for small screens */
     padding: 12px 8px;
+    margin: 15px 0; /* Add margin above and below */
   }
   
   #logo {
     height: 60px;
     padding: 8px 12px;
-    margin: 0 auto 3px auto;
+    margin: 12px auto; /* Maintained margin to ensure clear separation from map */
+    z-index: 9999; /* Very high z-index to ensure it's above the map */
+    position: relative; /* Ensure z-index takes effect */
+    background: white;
   }
   
   #header {
     padding: 8px 12px;
-    margin: 3px 0;
+    margin: 8px 0; /* Add margin around header */
   }
   
   #title h1 {
