@@ -36,30 +36,29 @@ body {
     position: relative; /* Changed from absolute to relative */
     top: 0; /* Reset top positioning */
     visibility: visible !important; /* Make sure it's visible on mobile */
-    opacity: 1; /* Remove !important so JavaScript can control opacity when scrolling */
-    height: 160px; /* Increased height for title area */
-    padding: 15px 10px; /* More padding for better spacing */
-    margin: 20px 0; /* Add margin above and below */
+    opacity: 1; 
+    height: 160px;
+    padding: 15px 10px; 
+    margin: 20px 0;
     background-color: white;
     border-bottom: 2px solid #eee; /* Add subtle separator */
-    z-index: 1001; /* Ensure it's above the map */
+    z-index: 1001; 
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add subtle shadow for separation */
   }
   
   /* Mobile-specific logo styling */
   #logo {
     height: 80px; /* Adequate height for mobile */
-    padding: 10px 15px; /* Better padding around logo */
+    padding: 10px 15px;
     margin: 15px auto; /* Maintained margin to ensure clear separation from map */
     background: white;
     z-index: 9999; /* Very high z-index to ensure it's above the map */
-    position: relative; /* Ensure z-index takes effect */
+    position: relative;
   }
   
   /* Mobile-specific header styling */
   #header {
-    padding: 10px 15px; /* Increased padding for better spacing */
-    margin: 10px 0; /* Add margin around header */
+    padding: 10px 15px; 
     background: white;
     z-index: 1002;
   }
@@ -70,7 +69,7 @@ body {
   }
   
   #header h2 {
-    margin: 5px 0; /* Add margin around subtitle */
+    margin: 5px 0;
     font-size: 1.1em;
   }
   
@@ -93,7 +92,7 @@ body {
     top: 0;
     left: 0;
     margin-bottom: 40px; /* Maintained margin to ensure no overlap with logo */
-    z-index: 1; /* Lower z-index than title elements */
+    z-index: 1; 
   }
   
   #narration {
