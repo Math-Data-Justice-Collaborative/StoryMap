@@ -22,16 +22,71 @@ $(window).on("load", function () {
   //   });
   // });
 
-
-  //Add the search bar
-  $('#search-input').on('keyup', function() {
+  //Add the search bar with enhanced functionality
+  $("#search-input").on("keyup", function () {
     var value = $(this).val().toLowerCase();
-    $('.chapter-container').filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    var visibleCount = 0;
+    var totalCount = $(".chapter-container").length;
+
+    // Filter chapters based on search input
+    $(".chapter-container").each(function () {
+      var chapterText = $(this).text().toLowerCase();
+      var isVisible = chapterText.indexOf(value) > -1;
+      $(this).toggle(isVisible);
+      if (isVisible) {
+        visibleCount++;
+      }
     });
+
+    // Update search input styling based on results
+    if (value.length > 0) {
+      if (visibleCount === 0) {
+        $("#search-input").css({
+          border: "2px solid #ff6b6b",
+          "background-color": "rgba(255, 107, 107, 0.1)",
+        });
+      } else {
+        $("#search-input").css({
+          border: "2px solid #51cf66",
+          "background-color": "rgba(81, 207, 102, 0.1)",
+        });
+      }
+
+      // Update placeholder to show results count
+      if (visibleCount === 0) {
+        $("#search-input").attr("placeholder", "No results found...");
+      } else {
+        $("#search-input").attr(
+          "placeholder",
+          `Found ${visibleCount} of ${totalCount} chapters`
+        );
+      }
+    } else {
+      // Reset styling when search is empty
+      $("#search-input").css({
+        border: "none",
+        "background-color": "transparent",
+      });
+      $("#search-input").attr("placeholder", "Search...");
+    }
   });
 
+  // Clear search when clicking the magnifying glass
+  $("#magnifying").on("click", function () {
+    $("#search-input").val("").trigger("keyup").focus();
+  });
 
+  // Add real-time typing indicator
+  $("#search-input").on("input", function () {
+    var value = $(this).val();
+    console.log("Searching for:", value); // Debug log to show what's being typed
+
+    // Add a subtle animation to show typing is happening
+    $(this).addClass("typing");
+    setTimeout(() => {
+      $(this).removeClass("typing");
+    }, 300);
+  });
 
   const descArray = [];
   let msg = new SpeechSynthesisUtterance();
@@ -134,8 +189,6 @@ $(window).on("load", function () {
   }
 
   function initMap(options, chapters) {
-
-
     createDocumentSettings(options);
 
     var chapterContainerMargin = 70;
@@ -143,7 +196,6 @@ $(window).on("load", function () {
     document.title = getSetting("_mapTitle");
     $("#header").append("<h1>" + (getSetting("_mapTitle") || "") + "</h1>");
     $("#header").append("<h2>" + (getSetting("_mapSubtitle") || "") + "</h2>");
-
 
     // Add logo
     if (getSetting("_mapLogo")) {
@@ -196,7 +248,6 @@ $(window).on("load", function () {
     // var searchBar = $('<div id="search-bar"><input type="text" id="search-input" placeholder="Search..."></div>');
     // $("#contents").before(searchBar);
 
-
     for (i in chapters) {
       var c = chapters[i];
       console.log(chapters);
@@ -210,17 +261,16 @@ $(window).on("load", function () {
 
         chapterCount += 1;
 
-
         markers.push(
           L.marker([lat, lon], {
             icon: L.ExtraMarkers.icon({
               icon: "fa-number",
               number: chapterCount,
-                // c["Marker"] === "Numbered" Currently just comment this out because not sure how to set it
-                //   ? chapterCount
-                //   : c["Marker"] === "Plain"
-                //   ? ""
-                //   : c["Marker"],
+              // c["Marker"] === "Numbered" Currently just comment this out because not sure how to set it
+              //   ? chapterCount
+              //   : c["Marker"] === "Plain"
+              //   ? ""
+              //   : c["Marker"],
               markerColor: c["Marker Color"] || "blue",
             }),
             opacity: c["Marker"] === "Hidden" ? 0 : 0.9,
@@ -252,13 +302,13 @@ $(window).on("load", function () {
       var sourcelink2 = null;
       var medialink2 = null;
 
-      sourcename = "Media Credit"
-      sourcelink = "Media Credit Link"
-      medialink = "Media Link"
+      sourcename = "Media Credit";
+      sourcelink = "Media Credit Link";
+      medialink = "Media Link";
 
-      sourcename2 = "Services Media Credit"
-      sourcelink2 = "Services Media Credit Link"
-      medialink2 = "Media Link 2"
+      sourcename2 = "Services Media Credit";
+      sourcelink2 = "Services Media Credit Link";
+      medialink2 = "Media Link 2";
 
       // If not YouTube: either audio or image
       var mediaTypes = {
@@ -288,7 +338,9 @@ $(window).on("load", function () {
         });
       }
 
-      var mediaExt = c[medialink] ? c[medialink].split(".").pop().toLowerCase() : "";
+      var mediaExt = c[medialink]
+        ? c[medialink].split(".").pop().toLowerCase()
+        : "";
       var mediaType = mediaTypes[mediaExt] || "img";
 
       if (mediaType) {
@@ -315,13 +367,13 @@ $(window).on("load", function () {
         })
           .append(media)
           .after(source);
-        }
+      }
 
       // YouTube
       if (c[medialink] && c[medialink].indexOf("youtube.com/") > -1) {
-        var videoId = c[medialink].split('v=')[1];
-        var ampersandPosition = videoId.indexOf('&');
-        if(ampersandPosition != -1) {
+        var videoId = c[medialink].split("v=")[1];
+        var ampersandPosition = videoId.indexOf("&");
+        if (ampersandPosition != -1) {
           videoId = videoId.substring(0, ampersandPosition);
         }
 
@@ -342,10 +394,9 @@ $(window).on("load", function () {
         })
           .append(media)
           .after(source);
-        }
+      }
 
       // END of adding the FIRST media source that can be either image or video =======================================
-
 
       // Begin of adding the SECOND media source that can be either image or video =======================================
       var source2 = "";
@@ -363,7 +414,9 @@ $(window).on("load", function () {
         });
       }
 
-      var mediaExt2 = c[medialink2] ? c[medialink2].split(".").pop().toLowerCase() : "";
+      var mediaExt2 = c[medialink2]
+        ? c[medialink2].split(".").pop().toLowerCase()
+        : "";
       var mediaType2 = mediaTypes[mediaExt2] || "img";
 
       if (mediaType2) {
@@ -390,17 +443,14 @@ $(window).on("load", function () {
         })
           .append(media2)
           .after(source2);
-        
-
       }
 
       // YouTube
       if (c[medialink2] && c[medialink2].indexOf("youtube.com/") > -1) {
-
-        console.log("Will this thing display")
-        var videoId = c[medialink2].split('v=')[1];
-        var ampersandPosition = videoId.indexOf('&');
-        if(ampersandPosition != -1) {
+        console.log("Will this thing display");
+        var videoId = c[medialink2].split("v=")[1];
+        var ampersandPosition = videoId.indexOf("&");
+        if (ampersandPosition != -1) {
           videoId = videoId.substring(0, ampersandPosition);
         }
 
@@ -439,8 +489,10 @@ $(window).on("load", function () {
         speechSynthesis.speak(msg);
       }
 
-
-      console.log(media && c[medialink] ? mediaContainer: "no","xxxxxxxxxxxxx")
+      console.log(
+        media && c[medialink] ? mediaContainer : "no",
+        "xxxxxxxxxxxxx"
+      );
       container
         .append('<p class="chapter-header">' + c["Resource"] + "</p>")
         .append('<p class="chapter-address">' + c["Address"] + "</p>")
@@ -519,7 +571,7 @@ $(window).on("load", function () {
           // Remove styling for the old in-focus chapter and
           // add it to the new active chapter
 
-          $(".chapter-container").removeClass("in-focus")
+          $(".chapter-container").removeClass("in-focus");
           // .addClass("out-focus");
           $("div#container" + i)
             .addClass("in-focus")
